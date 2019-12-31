@@ -1,5 +1,5 @@
 package app;
-
+import app.data.Member;
 import app.data.Buku;
 import java.util.HashMap;
 
@@ -25,6 +25,12 @@ public class Program{
 		
 		Buku buku1 = lemariBuku.get("978-3-16-148410-0");
 		
+		HashMap <String,Member> dataMember = new HashMap <String,Member>();
+		dataMember.put("M0001", new Member("M0001", "Imam", "BSD, 1 January 2000"));
+		dataMember.put("M0002", new Member("M0002", "Ade", "BSD, 12 January 2001"));
+		
+		Member member1 = dataMember.get("M0001");
+		
 		int no = 1;
 		//foreach data buku dari lemari buku berdasarkan key
 		for (String key : lemariBuku.keySet()){
@@ -40,6 +46,18 @@ public class Program{
 			System.out.println("ISBN	: "+isbn);
 			System.out.println("Penulis	: "+penulis);
 			System.out.println("Penerbit	: "+penerbit);
+			System.out.println();
+		}
+		
+		for (String key : dataMember.keySet()){
+			String id = dataMember.get(key).getidMember();
+			String nama = dataMember.get(key).getnamaMember();
+			String ttl = dataMember.get(key).getttl();
+			
+			System.out.println("No	: "+no++);
+			System.out.println("ID Member	: "+id);
+			System.out.println("Nama Member	: "+nama);
+			System.out.println("Tempat Tgl Lahir	: "+ttl);
 			System.out.println();
 		}
 	}
