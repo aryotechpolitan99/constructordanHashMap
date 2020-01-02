@@ -2,6 +2,7 @@ package app;
 import app.data.Member;
 import app.data.Buku;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Program{
 	
@@ -20,8 +21,8 @@ public class Program{
 		*/
 		
 		HashMap <String,Buku> lemariBuku = new HashMap <String,Buku>();
-		lemariBuku.put("978-3-16-148410-0", new Buku("Sang Juara", "978-3-16-148410-0", "Imam", "Print", 250));
-		lemariBuku.put("978-3-16-148410-0", new Buku("Sang Idola", "978-3-16-148410-1", "Imam", "Print", 300));
+		lemariBuku.put("978-3-16-148410-0", new Buku("Sang Juara", "978-3-16-148410-0", "Imam", "Print", 250, 2000, 5));
+		lemariBuku.put("978-3-16-148410-1", new Buku("Sang Idola", "978-3-16-148410-1", "Imam", "Print", 300, 2001, 7));
 		
 		Buku buku1 = lemariBuku.get("978-3-16-148410-0");
 		
@@ -39,17 +40,64 @@ public class Program{
 			String isbn = lemariBuku.get(key).getISBN();
 			String penulis = lemariBuku.get(key).getpenulis();
 			String penerbit = lemariBuku.get(key).getpenerbit();
+			int halaman = lemariBuku.get(key).getjumlahHalaman();
+			int tahun = lemariBuku.get(key).gettahunTerbit();
+			int stock = lemariBuku.get(key).getStock();
 			
 			
-			System.out.println("No	: "+no++);
-			System.out.println("Judul	: "+judul);
-			System.out.println("ISBN	: "+isbn);
-			System.out.println("Penulis	: "+penulis);
-			System.out.println("Penerbit	: "+penerbit);
+			System.out.println("No		: "+no++);
+			System.out.println("Judul		: "+judul);
+			System.out.println("ISBN		: "+isbn);
+			System.out.println("Penulis		: "+penulis);
+			System.out.println("Penerbit		: "+penerbit);
+			System.out.println("Jumlah Halaman		: "+halaman);
+			System.out.println("Tahun Terbit		: "+tahun);
+			System.out.println("Stock		: "+stock);
 			System.out.println();
 		}
 		
-		for (String key : dataMember.keySet()){
+		Scanner input = new Scanner(System.in);
+		// input ISBN
+		System.out.print("Masukan ISBN buku yang dipinjam :");
+		String isbn = input.nextLine();
+		// cek buku dengan ISBN tersebut
+		if(lemariBuku.containsKey(isbn)){
+			
+			System.out.println("Buku ada");
+			Buku borrowedBook = lemariBuku.get(isbn);
+			 borrowedBook.Dipinjam();
+			
+			int nomer = 1;
+		//foreach data buku dari lemari buku berdasarkan key
+		for (String key : lemariBuku.keySet()){
+			
+			String judul = lemariBuku.get(key).getjudulBuku();
+			String ISBN = lemariBuku.get(key).getISBN();
+			String penulis = lemariBuku.get(key).getpenulis();
+			String penerbit = lemariBuku.get(key).getpenerbit();
+			int halaman = lemariBuku.get(key).getjumlahHalaman();
+			int tahun = lemariBuku.get(key).gettahunTerbit();
+			int stock = lemariBuku.get(key).getStock();
+			
+			
+			System.out.println("No		: "+nomer++);
+			System.out.println("Judul		: "+judul);
+			System.out.println("ISBN		: "+isbn);
+			System.out.println("Penulis		: "+penulis);
+			System.out.println("Penerbit		: "+penerbit);
+			System.out.println("Jumlah Halaman		: "+halaman);
+			System.out.println("Tahun Terbit		: "+tahun);
+			System.out.println("Stock		: "+stock);
+			System.out.println();
+		}
+		}
+		else{
+			
+			System.out.println("Buku tidak ada");
+		}
+		
+		
+		/*for (String key : dataMember.keySet()){
 			String id = dataMember.get(key).getidMember();
 			String nama = dataMember.get(key).getnamaMember();
 			String ttl = dataMember.get(key).getttl();
@@ -59,6 +107,7 @@ public class Program{
 			System.out.println("Nama Member	: "+nama);
 			System.out.println("Tempat Tgl Lahir	: "+ttl);
 			System.out.println();
-		}
+		}*/
+	
 	}
 }
